@@ -158,40 +158,148 @@ class HomeView extends StatelessWidget {
                       ),
                     ),
                   ),
+                  SizedBox(height: 10),
+                  Text(
+                    "Bạn muốn làm gì?",
+                    style: TextStyle(
+                      color: AppColors.black,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                  SizedBox(height: 10),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Container(
+                        height: 120,
+                        width: 180,
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            colors: [
+                              AppColors.primaryColor2.withOpacity(0.4),
+                              AppColors.primaryColor1.withOpacity(0.4),
+                            ],
+                          ),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 20,
+                            vertical: 5,
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            //crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Xem biểu đồ",
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w700,
+                                ),
+                              ),
+                              Text(
+                                "Đánh giá hiệu suất",
+                                style: TextStyle(
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w500,
+                                    color: AppColors.gray
+                                ),
+                              ),
+                              SizedBox(height: 10),
+                              ElevatedButton(
+                                onPressed: () {},
+                                child: Text("Xem ngay"),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      Container(
+                        height: 120,
+                        width: 180,
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            colors: [
+                              AppColors.primaryColor2.withOpacity(0.4),
+                              AppColors.primaryColor1.withOpacity(0.4),
+                            ],
+                          ),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 10,
+                            vertical: 5,
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            //crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Schedule",
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w700,
+                                ),
+                              ),
+                              Text(
+                                "Xem lịch học",
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w500,
+                                  color: AppColors.gray
+                                ),
+                              ),
+                              SizedBox(height: 10),
+                              ElevatedButton(
+                                onPressed: () {},
+                                child: Text("Xem ngay"),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
                         "Đã hoàn thành",
                         style: TextStyle(
-                            color: AppColors.black,
-                            fontSize: 16,
-                            fontWeight: FontWeight.w700),
+                          color: AppColors.black,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w700,
+                        ),
                       ),
                       TextButton(
                         onPressed: () {},
                         child: Text(
                           "See More",
                           style: TextStyle(
-                              color: AppColors.gray,
-                              fontSize: 14,
-                              fontWeight: FontWeight.w700),
+                            color: AppColors.gray,
+                            fontSize: 14,
+                            fontWeight: FontWeight.w700,
+                          ),
                         ),
-                      )
+                      ),
                     ],
                   ),
                   CompletedTaskCard(),
-                  SizedBox(height: 10,),
+                  SizedBox(height: 10),
                   CompletedTaskCard(),
-                  SizedBox(height: 10,),
+                  SizedBox(height: 10),
                   CompletedTaskCard(),
-                  SizedBox(height: 10,),
+                  SizedBox(height: 10),
                   CompletedTaskCard(),
-                  SizedBox(height: 10,),
+                  SizedBox(height: 10),
                   CompletedTaskCard(),
-                  SizedBox(height: 10,),
+                  SizedBox(height: 10),
                   CompletedTaskCard(),
-                  SizedBox(height: 10,),
+                  SizedBox(height: 10),
                 ],
               ),
             ),

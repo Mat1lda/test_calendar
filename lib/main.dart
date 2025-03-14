@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:syncfusion_localizations/syncfusion_localizations.dart';
 import 'package:test_calendar/pages/main_tab/tab_view.dart';
-import 'package:test_calendar/pages/today_page.dart';
+import 'package:test_calendar/pages/time_table/custom_timetable_screen.dart';
 import 'package:test_calendar/provider/calendar_time_provider.dart';
 import 'package:test_calendar/provider/time_provider.dart';
 
+import 'package:timezone/data/latest_all.dart' as tz;
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  tz.initializeTimeZones();
   runApp(
       MultiProvider(
         providers: [
@@ -41,8 +45,16 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+        localizationsDelegates: [
+          SfGlobalLocalizations.delegate, // Localize Syncfusion Calendar
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+        ],
+        supportedLocales: [
+          const Locale('vi'), // Tiếng Việt
+        ],
       theme: ThemeData(primarySwatch: Colors.grey),
-      home: const MainTabView(),
+      home: CustomTimetableScreem()
     );
   }
 }
