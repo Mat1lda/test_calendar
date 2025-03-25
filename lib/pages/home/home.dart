@@ -33,7 +33,7 @@ class HomeView extends StatelessWidget {
                           Text(
                             "Matilda",
                             style: TextStyle(
-                              color: AppColors.primaryColor1,
+                              color: AppColors.black,
                               fontSize: 25,
                               fontWeight: FontWeight.w700,
                             ),
@@ -42,15 +42,9 @@ class HomeView extends StatelessWidget {
                       ),
                       IconButton(
                         onPressed: () {
-                          // Navigator.push(
-                          //   context,
-                          //   MaterialPageRoute(
-                          //     builder: (context) => const NotificationView(),
-                          //   ),
-                          // );
                         },
                         icon: Image.asset(
-                          "assets/images/alarm_clock.png",
+                          "assets/images/notification_active.png",
                           width: 25,
                           height: 25,
                           fit: BoxFit.fitHeight,
@@ -71,7 +65,13 @@ class HomeView extends StatelessWidget {
                   Container(
                     height: 120,
                     decoration: BoxDecoration(
-                      gradient: LinearGradient(colors: AppColors.primaryG),
+                      // gradient: LinearGradient(
+                      //   colors: [
+                      //     AppColors.secondaryColor1,
+                      //     AppColors.secondaryColor2,
+                      //   ],
+                      // ),
+                      color: AppColors.secondaryColor2.withOpacity(0.2),
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: Padding(
@@ -89,9 +89,9 @@ class HomeView extends StatelessWidget {
                               Text(
                                 "CÔNG VIỆC HÔM NAY CỦA BẠN",
                                 style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: 14,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 13,
                                 ),
                               ),
                               SizedBox(height: 10),
@@ -114,12 +114,13 @@ class HomeView extends StatelessWidget {
                   Container(
                     height: 120,
                     decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        colors: [
-                          AppColors.primaryColor2.withOpacity(0.4),
-                          AppColors.primaryColor1.withOpacity(0.4),
-                        ],
-                      ),
+                      // gradient: LinearGradient(
+                      //   colors: [
+                      //     AppColors.primaryColor2.withOpacity(0.4),
+                      //     AppColors.primaryColor1.withOpacity(0.4),
+                      //   ],
+                      // ),
+                      color: AppColors.primaryColor2.withOpacity(0.2),
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: Padding(
@@ -138,8 +139,8 @@ class HomeView extends StatelessWidget {
                                 "CẦN NHẮC NHỞ SỰ KIỆN QUAN TRỌNG?",
                                 style: TextStyle(
                                   color: Colors.black,
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: 14,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 13,
                                 ),
                               ),
                               SizedBox(height: 10),
@@ -168,100 +169,155 @@ class HomeView extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height: 10),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Container(
-                        height: 120,
-                        width: 180,
-                        decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            colors: [
-                              AppColors.primaryColor2.withOpacity(0.4),
-                              AppColors.primaryColor1.withOpacity(0.4),
-                            ],
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Container(
+                          height: 120,
+                          width: 150,
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              colors: [
+                                AppColors.primaryColor2.withOpacity(0.4),
+                                AppColors.primaryColor1.withOpacity(0.4),
+                              ],
+                            ),
+                            borderRadius: BorderRadius.circular(20),
                           ),
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 20,
-                            vertical: 5,
-                          ),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            //crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "Xem biểu đồ",
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w700,
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 15,
+                              vertical: 5,
+                            ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              //crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "Xem biểu đồ",
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w500,
+                                  ),
                                 ),
-                              ),
-                              Text(
-                                "Đánh giá hiệu suất",
-                                style: TextStyle(
+                                Text(
+                                  "Đánh giá hiệu suất",
+                                  style: TextStyle(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w500,
+                                      color: AppColors.gray
+                                  ),
+                                ),
+                                SizedBox(height: 10),
+                                ElevatedButton(
+                                  onPressed: () {},
+                                  child: Text("Xem ngay"),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 20,
+                        ),
+                        Container(
+                          height: 120,
+                          width: 150,
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              colors: [
+                                AppColors.primaryColor2.withOpacity(0.4),
+                                AppColors.primaryColor1.withOpacity(0.4),
+                              ],
+                            ),
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 10,
+                              vertical: 5,
+                            ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              //crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "Schedule",
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                                Text(
+                                  "Xem lịch học",
+                                  style: TextStyle(
                                     fontSize: 12,
                                     fontWeight: FontWeight.w500,
                                     color: AppColors.gray
+                                  ),
                                 ),
-                              ),
-                              SizedBox(height: 10),
-                              ElevatedButton(
-                                onPressed: () {},
-                                child: Text("Xem ngay"),
-                              ),
-                            ],
+                                SizedBox(height: 10),
+                                ElevatedButton(
+                                  onPressed: () {},
+                                  child: Text("Xem ngay"),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                      Container(
-                        height: 120,
-                        width: 180,
-                        decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            colors: [
-                              AppColors.primaryColor2.withOpacity(0.4),
-                              AppColors.primaryColor1.withOpacity(0.4),
-                            ],
-                          ),
-                          borderRadius: BorderRadius.circular(20),
+                        SizedBox(
+                          width: 20,
                         ),
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 10,
-                            vertical: 5,
+                        Container(
+                          height: 120,
+                          width: 150,
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              colors: [
+                                AppColors.primaryColor2.withOpacity(0.4),
+                                AppColors.primaryColor1.withOpacity(0.4),
+                              ],
+                            ),
+                            borderRadius: BorderRadius.circular(20),
                           ),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            //crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "Schedule",
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w700,
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 15,
+                              vertical: 5,
+                            ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              //crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "Deadline",
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w500,
+                                  ),
                                 ),
-                              ),
-                              Text(
-                                "Xem lịch học",
-                                style: TextStyle(
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w500,
-                                  color: AppColors.gray
+                                Text(
+                                  "bài tập cần làm",
+                                  style: TextStyle(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w500,
+                                      color: AppColors.gray
+                                  ),
                                 ),
-                              ),
-                              SizedBox(height: 10),
-                              ElevatedButton(
-                                onPressed: () {},
-                                child: Text("Xem ngay"),
-                              ),
-                            ],
+                                SizedBox(height: 10),
+                                ElevatedButton(
+                                  onPressed: () {},
+                                  child: Text("Xem ngay"),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
 
                   Row(

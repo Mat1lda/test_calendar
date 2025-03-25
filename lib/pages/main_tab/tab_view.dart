@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:test_calendar/components/app_colors.dart';
+import 'package:test_calendar/pages/task_schedule/home_task_view.dart';
+import 'package:test_calendar/pages/task_schedule/task_schedule_view.dart';
+import 'package:test_calendar/pages/time_table/custom_timetable_screen.dart';
 
 
 import '../../utils/tab_button.dart';
@@ -62,7 +65,7 @@ class _MainTabViewState extends State<MainTabView> {
             children: [
               TabButton(
                 icon: "assets/images/home_tab.png",
-                selectIcon: "assets/images/home_tab_selected.png",
+                selectIcon: "assets/images/home_tab_select.png",
                 isActive: selectTab == 0,
                 onTap: () {
                   selectTab = 0;
@@ -74,12 +77,12 @@ class _MainTabViewState extends State<MainTabView> {
                 },
               ),
               TabButton(
-                icon: "assets/images/airplay.png",
-                selectIcon: "assets/images/airplay_selected.png",
+                icon: "assets/images/activity_tab.png",
+                selectIcon: "assets/images/activity_tab_select.png",
                 isActive: selectTab == 1,
                 onTap: () {
                   selectTab = 1;
-                  currentTab = HomeView();
+                  currentTab = HomeTaskView();
                   if (mounted) {
                     setState(() {});
                   }
@@ -88,20 +91,20 @@ class _MainTabViewState extends State<MainTabView> {
 
               const SizedBox(width: 40),
               TabButton(
-                icon: "assets/images/alarm_clock.png",
-                selectIcon: "assets/images/alarm_clock_selected.png",
+                icon: "assets/images/profile_tab.png",
+                selectIcon: "assets/images/profile_tab_select.png",
                 isActive: selectTab == 2,
                 onTap: () {
                   selectTab = 2;
-                  currentTab = HomeView();
+                  currentTab = CustomTimetableScreem();
                   if (mounted) {
                     setState(() {});
                   }
                 },
               ),
               TabButton(
-                icon: "assets/images/profile.png",
-                selectIcon: "assets/images/profile_selected.png",
+                icon: "assets/images/profile_tab.png",
+                selectIcon: "assets/images/profile_tab_select.png",
                 isActive: selectTab == 3,
                 onTap: () {
                   selectTab = 3;

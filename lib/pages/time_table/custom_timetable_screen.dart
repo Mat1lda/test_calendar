@@ -15,9 +15,9 @@ class _CustomTimetableScreemState extends State<CustomTimetableScreem> {
   final List<String> _subjectCollection = <String>[];//danh sach tieu de
   final List<DateTime> _startTimeCollection = <DateTime>[];
   final List<DateTime> _endTimeCollection = <DateTime>[];
-  final List<Color> _colorCollection = <Color>[];
+  final List<Color> _colorCollection = <Color>[]; 
   List<TimeRegion> _specialTimeRegion = <TimeRegion>[];
-  CalendarView _selectedView = CalendarView.week;
+  CalendarView _selectedView = CalendarView.week; 
   // final Map<CalendarView, String> _viewNames = {
   //   CalendarView.day: "Ngày",
   //   CalendarView.week: "Tuần",
@@ -41,6 +41,12 @@ class _CustomTimetableScreemState extends State<CustomTimetableScreem> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            _showDeadlineDialog();
+          },
+          child: Icon(Icons.add),
+        ),
         // appBar: AppBar(
         //   title: Text('Lịch biểu'),
         //   actions: [
@@ -167,7 +173,8 @@ class _CustomTimetableScreemState extends State<CustomTimetableScreem> {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: Text(isEdit ? 'Chỉnh sửa cuộc hẹn' : 'Thêm cuộc hẹn'),
+        backgroundColor: Colors.white,
+        title: Text(isEdit ? 'Chỉnh sửa cuộc hẹn' : 'Thêm cuộc hẹn', textAlign: TextAlign.center, style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700), ),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -267,11 +274,13 @@ class _CustomTimetableScreemState extends State<CustomTimetableScreem> {
       ),
     );
   }
+
   void _showDeleteConfirmation(Appointment appointment) {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: Text('Xác nhận xóa'),
+        //backgroundColor: Colors.white,
+        title: Text('Xác nhận xóa', textAlign: TextAlign.center, style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),),
         content: Text('Bạn có chắc muốn xóa cuộc hẹn "${appointment.subject}" không?'),
         actions: [
           TextButton(
@@ -362,6 +371,103 @@ class _CustomTimetableScreemState extends State<CustomTimetableScreem> {
     _colorCollection.add(const Color(0xFFE47C73));
     _colorCollection.add(const Color(0xFF636363));
     _colorCollection.add(const Color(0xFF0A8043));
+  }
+
+  void _showDeadlineDialog() {
+    TextEditingController subjectController = TextEditingController();
+    TextEditingController deadlineController = TextEditingController();
+    DateTime selectedDate = DateTime.now();
+
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text('Thêm Deadline cho môn học'),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            TextField(
+              controller: subjectController,
+              decoration: InputDecoration(
+                labelText: 'Tên môn học',
+                //border: OutlineInputBorder(),
+              ),
+            ),
+            SizedBox(height: 16),
+            TextField(
+              controller: deadlineController,
+              decoration: InputDecoration(
+                labelText: 'Tên deadline',
+                //border: OutlineInputBorder(),
+              ),
+            ),
+            SizedBox(height: 16),
+            ElevatedButton(
+              onPressed: () async {
+                DateTime? pickedDate = await showDatePicker(
+                  context: context,
+                  initialDate: selectedDate,
+                  firstDate: DateTime.now(),
+                  lastDate: DateTime(2100),
+                );
+                if (pickedDate != null) {
+                  selectedDate = pickedDate;
+                }
+              },
+              child: Text('Chọn ngày: ${selectedDate.toLocal()}'.split(' ')[0]),
+            ),
+            SizedBox(height: 8),
+            ElevatedButton(
+              onPressed: () async {
+                TimeOfDay? pickedTime = await showTimePicker(
+                  context: context,
+                  initialTime: TimeOfDay.fromDateTime(selectedDate),
+                );
+                if (pickedTime != null) {
+                  selectedDate = DateTime(
+                    selectedDate.year,
+                    selectedDate.month,
+                    selectedDate.day,
+                    pickedTime.hour,
+                    pickedTime.minute,
+                  );
+                }
+              },
+              child: Text('Chọn giờ: ${TimeOfDay.fromDateTime(selectedDate).format(context)}'),
+            ),
+          ],
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: Text('Hủy'),
+          ),
+          TextButton(
+            onPressed: () {
+              if (subjectController.text.isEmpty || deadlineController.text.isEmpty) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text('Vui lòng điền đầy đủ thông tin')),
+                );
+                return;
+              }
+
+              setState(() {
+                // _dataSource.appointments!.add(
+                //   Appointment(
+                //     startTime: selectedDate,
+                //     endTime: selectedDate.add(Duration(hours: 1)),
+                //     subject: '${subjectController.text} - ${deadlineController.text}',
+                //     color: _colorCollection[Random().nextInt(_colorCollection.length)],
+                //   ),
+                // );
+                // _dataSource.notifyListeners(CalendarDataSourceAction.reset, _dataSource.appointments!);
+              });
+              Navigator.pop(context);
+            },
+            child: Text('Thêm'),
+          ),
+        ],
+      ),
+    );
   }
 }
 

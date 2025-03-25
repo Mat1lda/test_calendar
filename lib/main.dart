@@ -1,42 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:provider/provider.dart';
-import 'package:syncfusion_localizations/syncfusion_localizations.dart';
+import 'package:intl/date_symbol_data_local.dart';
+import 'package:test_calendar/components/app_colors.dart';
 import 'package:test_calendar/pages/main_tab/tab_view.dart';
-import 'package:test_calendar/pages/time_table/custom_timetable_screen.dart';
-import 'package:test_calendar/provider/calendar_time_provider.dart';
-import 'package:test_calendar/provider/time_provider.dart';
-
-import 'package:timezone/data/latest_all.dart' as tz;
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  tz.initializeTimeZones();
-  runApp(
-      MultiProvider(
-        providers: [
-        ChangeNotifierProvider(create: (_) => TimeProvider()),
-        ChangeNotifierProvider(create: (_) => SelectedTimeChangeProvider())
-        ],
-        child: const MyApp(),
-      ),
-  );
+  initializeDateFormatting('vi_VN', null);
+  runApp(MyApp());
 }
-
-MaterialColor white = const MaterialColor(
-  0xFFFFFFFF,
-  <int, Color>{
-    50: Color(0xFFFFFFFF),
-    100: Color(0xFFFFFFFF),
-    200: Color(0xFFFFFFFF),
-    300: Color(0xFFFFFFFF),
-    400: Color(0xFFFFFFFF),
-    500: Color(0xFFFFFFFF),
-    600: Color(0xFFFFFFFF),
-    700: Color(0xFFFFFFFF),
-    800: Color(0xFFFFFFFF),
-    900: Color(0xFFFFFFFF),
-  },
-);
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -45,16 +15,30 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-        localizationsDelegates: [
-          SfGlobalLocalizations.delegate, // Localize Syncfusion Calendar
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-        ],
-        supportedLocales: [
-          const Locale('vi'), // Tiếng Việt
-        ],
-      theme: ThemeData(primarySwatch: Colors.grey),
-      home: CustomTimetableScreem()
+      // localizationsDelegates: [
+      //   SfGlobalLocalizations.delegate, // Localize Syncfusion Calendar
+      //   GlobalMaterialLocalizations.delegate,
+      //   GlobalWidgetsLocalizations.delegate,
+      // ],
+      // supportedLocales: [
+      //   const Locale('vi'), // Tiếng Việt
+      // ],
+      theme: ThemeData(
+          //primaryColor: AppColors.primaryColor1
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.white, // Màu nền mặc định
+            foregroundColor: AppColors.primaryColor1.withOpacity(1), // Màu chữ/icon
+            textStyle: TextStyle(fontSize: 15, fontWeight: FontWeight.w500), // Kiểu chữ
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20), // Bo góc
+            ),
+            elevation: 0, // Độ nâng
+          ),
+        ),
+        colorScheme: ColorScheme.fromSeed(seedColor: AppColors.primaryColor1),
+      ),
+      home: MainTabView(),
     );
   }
 }
